@@ -66,4 +66,24 @@ class PostController extends Controller
 	    $models = Post::select($columns)->active()->with(['category:id,name,slug'])->limit($limit)->orderBy($column, $direction)->get();
 	    return responseJson("success", $models, 200);
     }
+
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function search(Request $request) {
+	    $order_by = $request->get('order_by', "created_at, desc");
+		list($column, $direction) = explode(",", $order_by);
+
+		$columns = $request->get('columns', '*');
+		$columns = explode(',', $columns);
+		if (empty($columns)) {
+			$columns = ["*"];
+		}
+
+		$keyword = $request->get('keyword', '');
+
+		$models = Post::active()->select($columns)->orderBy($column, $direction)->where('title', "LIKE", "%$keyword%")->get();
+		return responseJson("success", $models, 200);
+    }
 }
