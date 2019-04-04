@@ -82,8 +82,9 @@ class PostController extends Controller
 		}
 
 		$keyword = $request->get('keyword', '');
+        $limit = $request->get('limit', 6);
 
-		$models = Post::active()->select($columns)->orderBy($column, $direction)->where('title', "LIKE", "%$keyword%")->get();
+		$models = Post::active()->select($columns)->orderBy($column, $direction)->where('title', "LIKE", "%$keyword%")->limit($limit)->paginate();
 		return responseJson("success", $models, 200);
     }
 }
