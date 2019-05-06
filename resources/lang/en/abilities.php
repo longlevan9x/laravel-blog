@@ -20,9 +20,7 @@
             'edit' => 'Edit Prouct',
         ],
     ],
-    'post' => [
-        'name' => 'Post',
-    ],
+
     'user' => [
         'name' => 'User',
         'roles' => 'Roles',

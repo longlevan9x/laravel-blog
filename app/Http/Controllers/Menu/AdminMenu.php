@@ -57,6 +57,40 @@ class AdminMenu
 				'children' => []
 			],
 			/*Profile*/
+            /*Post*/
+            [
+                'name'     => __("abilities.post.name"),
+                'url'      => '#',
+                'visible'  => can_index('post') ||  can_index('category') ||  can_index('tag'),
+                'icon'     => 'fa-users',
+                'children' => [
+                    [
+                        'name'    => __("admin/menu.list"),
+                        'url'     => url_admin('post'),
+                        'visible' => can_index('post'),
+                        'icon'    => 'fa-user-circle',
+                    ],
+                    [
+                        'name'    => __("admin/menu.add"),
+                        'url'     => url_admin('post/create'),
+                        'visible' => can_create('post'),
+                        'icon'    => 'fa-plus',
+                    ],
+                    [
+                        'name'    => __("abilities.category.name"),
+                        'url'     => url_admin('category'),
+                        'visible' => can_index('category'),
+                        'icon'    => 'fa-user-circle',
+                    ],
+                    [
+                        'name'    => __("abilities.tag.name"),
+                        'url'     => url_admin('tag'),
+                        'visible' => can_index('tag'),
+                        'icon'    => 'fa-user-circle',
+                    ],
+                ]
+            ],
+            /*Post*/
 			/*Admin*/
 			[
 				'name'     => __("abilities.admin.name"),

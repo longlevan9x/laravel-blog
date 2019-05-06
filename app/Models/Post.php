@@ -97,7 +97,7 @@ class Post extends Model
 {
 	use ModelTrait;
 	use ModelUploadTrait;
-	//use Translatable;
+	use Translatable;
 	use ModelCategoryTrait;
 
 	const TYPE_POST = 'post';

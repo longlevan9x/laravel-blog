@@ -18,6 +18,8 @@ class AuthServiceProvider extends ServiceProvider
 		"App\Models\Admins"            => "App\Policies\AdminPolicy",
 		"Silber\Bouncer\Database\Role" => "App\Policies\RolePolicy",
 		//can remove
+        "App\Models\Post"              => "App\Policies\PostPolicy",
+        "App\Models\Tag"               => "App\Policies\TagPolicy",
 	];
 
 	/**

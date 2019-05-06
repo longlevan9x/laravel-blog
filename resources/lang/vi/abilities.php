@@ -82,6 +82,24 @@ return [
 		'name' => "Website"
 	],
 
-	'translation-manager' => 'Dịch đa ngữ'
+	'translation-manager' => 'Dịch đa ngữ',
 	//can remove
+    'post' => [
+        'name' => 'Tin tức',
+        'resource' => [
+            'index' => 'Danh sách tin tức',
+            'create' => 'Tạo mới bài viết',
+            'edit' => 'Cập nhật bài viết',
+            'show' => 'Thông tin bài viết',
+        ],
+    ],
+
+    'tag' => [
+        'name' => 'Tag',
+        'resource' => [
+            'index' => 'Danh sách tag',
+            'create' => 'Tạo mới tag',
+            'edit' => 'Cập nhật tag',
+        ],
+    ],
 ];
