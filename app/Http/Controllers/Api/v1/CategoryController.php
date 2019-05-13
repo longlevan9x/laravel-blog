@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Pika\Api\QueryBuilder;
+use Pika\Api\RequestCreator;
 
 /**
  * Class CategoryController
@@ -18,9 +20,12 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 	public function index(Request $request) {
-	    $queryBuilder= new QueryBuilder(new Category(), $request);
+	    $queryBuilder= new QueryBuilder((new Category())->setTranslatedAttributes(['name']), $request);
 
-		$models = $queryBuilder->build()->get();
+        $queryBuilder->setDefaultUri(RequestCreator::createWithParameters(['includes' => 'translations']));
+
+        $models = $queryBuilder->build()->get();
+
 		return responseJson('success', $models, config('api_response.status.success'));
 	}
 

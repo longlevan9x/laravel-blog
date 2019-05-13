@@ -77,7 +77,6 @@ use Illuminate\Support\Collection;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereTranslation($key, $value, $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereTranslationLike($key, $value, $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category withTranslation()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category withTranslations()
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Relationship[] $relationships
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category postTime($time = '')
  */
@@ -106,13 +105,20 @@ class Category extends Model
 		'seo_description'
 	];
 
-	public $translatedAttributes = [
+	protected $translatedAttributes = [
 		'name',
 		'description',
 		'seo_title',
 		'seo_keyword',
 		'seo_description'
 	];
+
+	public function setTranslatedAttributes($translatedAttributes) {
+	    $this->translatedAttributes = $translatedAttributes;
+	    return $this;
+    }
+
+    protected $hidden = ['translations'];
 
 	/**
 	 * Category constructor.
