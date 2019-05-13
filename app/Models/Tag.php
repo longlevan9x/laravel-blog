@@ -63,11 +63,4 @@ class Tag extends Model
 	public function posts() {
 		return $this->belongsToMany(Post::class, Relationship::table(), 'relation1_id', 'relation2_id')->where('relation_type', Tag::table() . Post::table())->withTranslation();
 	}
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany|Builder|ModelTrait
-	 */
-	public function products() {
-		return $this->belongsToMany(Product::class, Relationship::table(), 'relation1_id', 'relation2_id')->where('relation_type', Tag::table() . Product::table())->withTranslation();
-	}
 }

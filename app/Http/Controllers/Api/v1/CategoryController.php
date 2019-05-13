@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Pika\Api\QueryBuilder;
 
 /**
  * Class CategoryController
@@ -11,13 +13,15 @@ use App\Http\Controllers\Controller;
  */
 class CategoryController extends Controller
 {
-	/**
-	 * @return \Illuminate\Http\JsonResponse
-	 */
-	public function index() {
-		$models = Category::active()->get();
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+	public function index(Request $request) {
+	    $queryBuilder= new QueryBuilder(new Category(), $request);
 
-		return responseJson('success', $models, 200);
+		$models = $queryBuilder->build()->get();
+		return responseJson('success', $models, config('api_response.status.success'));
 	}
 
 	/**

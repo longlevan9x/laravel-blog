@@ -173,7 +173,7 @@ if (!function_exists('responseJson')) {
 			'message' => $message,
 			'status'  => $status,
 			'result'  => $data
-		], $status, $header, $option);
+		], $status = 200, $header, $option);
 	}
 }
 

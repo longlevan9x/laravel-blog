@@ -10,7 +10,7 @@ $factory->define(App\Models\Category::class, function(Faker $faker) {
 		'image'             => $faker->imageUrl(),
 		'is_active'         => 1,
 		'type'              => 'category',
-		'description'           => $faker->text,
+		'description'           => $faker->text(190),
 		'status'            => '',
 		'seo_title'         => '',
 		'seo_keyword'       => '',
