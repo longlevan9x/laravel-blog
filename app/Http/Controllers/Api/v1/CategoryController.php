@@ -15,19 +15,28 @@ use Pika\Api\RequestCreator;
  */
 class CategoryController extends Controller
 {
+    protected $queryBuilder;
+    protected $repository;
+    protected $request;
+
+    /**
+     * CategoryController constructor.
+     * @param Request $request
+     */
+    public function __construct(Request $request) {
+        $this->request = $request;
+        $this->repository = new Category();
+        $this->queryBuilder = new QueryBuilder($this->repository, $request);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-	public function index(Request $request) {
-        $model = new Category();
-	    $queryBuilder= new QueryBuilder($model, $request);
-
-        $queryBuilder->setDefaultUri(RequestCreator::createWithParameters(['includes' => 'translations', 'is_active' => 1]));
-
-        $columns = $request->get('columns', '');
-
-        $models = $queryBuilder->build()->get()->makeHidden(get_hidden_columns($model->getFillable(), $columns));
+	public function index() {
+        $this->queryBuilder->setDefaultUri(RequestCreator::createWithParameters(['includes' => 'translations', 'is_active' => 1]));
+        $columns = $this->request->get('columns', '');
+        $models = $this->queryBuilder->build()->get()->makeHidden(get_hidden_columns($this->repository->getFillable(), $columns));
 
 		return responseJson('success', $models, config('api_response.status.success'));
 	}
@@ -44,4 +53,16 @@ class CategoryController extends Controller
 
 		return responseJson('fail', __('admin/common.not found'), 200);
 	}
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getWithIsHome(Request $request) {
+        $this->queryBuilder->setDefaultUri(RequestCreator::createWithParameters(['includes' => 'translations', 'is_active' => 1, 'is_home' => 1]));
+        $columns = $this->request->get('columns', '');
+        $models = $this->queryBuilder->build()->get()->makeHidden(get_hidden_columns($this->repository->getFillable(), $columns));
+
+        return responseJson('success', $models, config('api_response.status.success'));
+    }
 }

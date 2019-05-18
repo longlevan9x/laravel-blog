@@ -29,6 +29,7 @@ Route::prefix('v1')->group(function() {
 
 	Route::prefix('category')->group(function() {
 		Route::get('/', 'Api\v1\CategoryController@index');
+		Route::get('/get-with-home', 'Api\v1\CategoryController@getWithIsHome');
 		Route::get("{slug}", 'Api\v1\CategoryController@showBySlug');
 	});
 });
