@@ -20,11 +20,14 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 	public function index(Request $request) {
-	    $queryBuilder= new QueryBuilder((new Category())->setTranslatedAttributes(['name']), $request);
+        $model = new Category();
+	    $queryBuilder= new QueryBuilder($model, $request);
 
-        $queryBuilder->setDefaultUri(RequestCreator::createWithParameters(['includes' => 'translations']));
+        $queryBuilder->setDefaultUri(RequestCreator::createWithParameters(['includes' => 'translations', 'is_active' => 1]));
 
-        $models = $queryBuilder->build()->get();
+        $columns = $request->get('columns', '');
+
+        $models = $queryBuilder->build()->get()->makeHidden(get_hidden_columns($model->getFillable(), $columns));
 
 		return responseJson('success', $models, config('api_response.status.success'));
 	}

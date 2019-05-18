@@ -56,6 +56,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="is_active" class="control-label col-md-3 col-sm-3 col-xs-12">@lang('admin/common.is_home')</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <div class="">
+                                <label>
+                                    {!! Form::hidden('is_home', $value = 0) !!}
+                                    {!! Form::checkbox('is_home', $value = 1,$value = null, ['class' => 'js-switch']) !!}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     @include('admin.layouts.widget.form.image-col-6', ['model' => $model ?? null])
                     <div class="form-group">
                         <label class=" control-label col-md-3 col-sm-3 col-xs-12" for="editor">@lang('admin/common.description')</label>

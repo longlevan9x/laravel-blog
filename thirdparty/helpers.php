@@ -157,27 +157,6 @@ if (!function_exists("get_time_line")) {
 	}
 }
 
-if (!function_exists('responseJson')) {
-	/**
-	 * @param string $message
-	 * @param mixed  $data
-	 * @param int    $status
-	 * @param array  $header
-	 * @param int    $option
-	 * @return \Illuminate\Http\JsonResponse
-	 */
-	function responseJson($message = '', $data = [], $status = 200, array $header = ['Content-type' => "application/json"], $option = JSON_NUMERIC_CHECK) {
-		header("Content-type: application/application/json");
-
-		return response()->json([
-			'message' => $message,
-			'status'  => $status,
-			'result'  => $data
-		], $status = 200, $header, $option);
-	}
-}
-
-
 /**
  * @param        $cs
  * @param string $delimiter

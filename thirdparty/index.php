@@ -28,4 +28,7 @@ require_once __DIR__ . '/url.php';
 /**
  * register abilities file
  */
-require_once __DIR__ . '/abilities.php';
+require_once __DIR__ . '/abilities.php';/**
+ * register abilities file
+ */
+require_once __DIR__ . '/api.php';

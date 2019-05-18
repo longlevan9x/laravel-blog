@@ -113,11 +113,6 @@ class Category extends Model
 		'seo_description'
 	];
 
-	public function setTranslatedAttributes($translatedAttributes) {
-	    $this->translatedAttributes = $translatedAttributes;
-	    return $this;
-    }
-
     protected $hidden = ['translations'];
 
 	/**

@@ -22,9 +22,6 @@ return [
 		'edit' => "Edit",
 	],
 
-	'submitButton'    => 'Submit',
-	'updateButton'    => 'Update',
-	'saveButton'      => "Save",
 	'resetButton'     => 'Reset',
 	'cancelButton'    => 'Cancel',
 	'backButton'      => 'Back',
