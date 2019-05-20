@@ -27,6 +27,10 @@ if (!function_exists("get_hidden_columns")) {
      * @return array
      */
     function get_hidden_columns($column_fillable, $columns, $delimiter = ',') {
+    	if(empty($columns)) {
+    		return [];
+	    }
+
         if (is_string($columns)) {
             $columns = explode($delimiter, $columns);
         }

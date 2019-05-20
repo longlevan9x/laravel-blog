@@ -2322,12 +2322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/longlevan9x/api-query-builder-laravel.git",
-                "reference": "f67f84191fdac3866e9957703cc92f9f427c9fb3"
+                "reference": "c1ab8b528311c570db6af77f9a9c0536312e4361"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/longlevan9x/api-query-builder-laravel/zipball/f67f84191fdac3866e9957703cc92f9f427c9fb3",
-                "reference": "f67f84191fdac3866e9957703cc92f9f427c9fb3",
+                "url": "https://api.github.com/repos/longlevan9x/api-query-builder-laravel/zipball/c1ab8b528311c570db6af77f9a9c0536312e4361",
+                "reference": "c1ab8b528311c570db6af77f9a9c0536312e4361",
                 "shasum": ""
             },
             "require": {
@@ -2357,7 +2357,7 @@
                 "api",
                 "laravel"
             ],
-            "time": "2019-04-11T04:52:47+00:00"
+            "time": "2019-05-20T16:54:42+00:00"
         },
         {
             "name": "psr/container",

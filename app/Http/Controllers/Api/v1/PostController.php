@@ -10,15 +10,32 @@ use Pika\Api\RequestCreator;
 
 class PostController extends Controller
 {
+	protected $queryBuilder;
+	protected $repository;
+	protected $request;
+
+	/**
+	 * PostController constructor.
+	 * @param Request $request
+	 */
+	public function __construct(Request $request) {
+		$this->request = $request;
+		$this->repository = new Post();
+		$this->queryBuilder = new QueryBuilder($this->repository, $request);
+	}
+
 	/**
 	 * @param Request $request
 	 * @return \Illuminate\Http\JsonResponse
 	 * @throws \Exception
 	 */
-	public function index(Request $request) {
-    	$queryBuilder = new QueryBuilder(new Post, $request);
-    	return responseJson("success", $queryBuilder->build()->paginate(), 200);
-    }
+	public function index() {
+		$this->queryBuilder->setDefaultUri(RequestCreator::createWithParameters(['includes' => 'translations', 'is_active' => 1]));
+		$columns = $this->request->get('columns', '');
+		$models = $this->queryBuilder->build()->paginate();
+//		return view("auth.login");
+		return responseJson('success', $models, config('api_response.status.success'));
+	}
 
 	/**
 	 * @param $slug
