@@ -27,6 +27,10 @@ Route::prefix('v1')->group(function() {
 		Route::get("{slug}", 'Api\v1\PostController@getBySlug');
 	});
 
+	Route::prefix('home')->group(function() {
+		Route::get('/list-post-category-is-home', "\\App\\Http\\Controllers\\Api\\v1\\HomeController@getListPostCategoryIsHome");
+	});
+
 	Route::prefix('category')->group(function() {
 		Route::get('/', 'Api\v1\CategoryController@index');
 		Route::get('/get-with-home', 'Api\v1\CategoryController@getWithIsHome');

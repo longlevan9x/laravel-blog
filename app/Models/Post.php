@@ -135,6 +135,8 @@ class Post extends Model
 		'seo_description',
 	];
 
+	protected $hidden = ['translations'];
+
 	/**
 	 * @param string $type
 	 */

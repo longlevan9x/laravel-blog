@@ -260,4 +260,11 @@ class Category extends Model
 	public function relations($modelClass) {
 		return $this->hasMany($modelClass)->withTranslation();
 	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function posts() {
+		return $this->hasMany(Post::class);
+	}
 }
