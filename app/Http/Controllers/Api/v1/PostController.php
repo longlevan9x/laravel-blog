@@ -31,9 +31,8 @@ class PostController extends Controller
 	 */
 	public function index() {
 		$this->queryBuilder->setDefaultUri(RequestCreator::createWithParameters(['includes' => 'translations', 'is_active' => 1]));
-		$columns = $this->request->get('columns', '');
 		$models = $this->queryBuilder->build()->paginate();
-//		return view("auth.login");
+
 		return responseJson('success', $models, config('api_response.status.success'));
 	}
 
@@ -69,19 +68,11 @@ class PostController extends Controller
 	 * @param Request $request
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function postPopular(Request $request) {
-	    $order_by = $request->get('order_by', "created_at, desc");
-	    list($column, $direction) = explode(",", $order_by);
+	public function postPopular() {
+		$this->queryBuilder->setDefaultUri(RequestCreator::createWithParameters(['includes' => 'translations', 'is_active' => 1]));
+		$models = $this->queryBuilder->build()->get();
 
-		$limit = $request->get('limit', 6);
-		$columns = $request->get('columns', '*');
-		$columns = explode(',', $columns);
-		if (empty($columns)) {
-			$columns = ["*"];
-		}
-
-	    $models = Post::select($columns)->active()->with(['category:id,name,slug'])->limit($limit)->orderBy($column, $direction)->get();
-	    return responseJson("success", $models, 200);
+		return responseJson('success', $models, config('api_response.status.success'));
     }
 
 	/**

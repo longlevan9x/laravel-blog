@@ -85,9 +85,9 @@ return [
 	'translation-manager' => 'Dịch đa ngữ',
 	//can remove
     'post' => [
-        'name' => 'Tin tức',
+        'name' => 'Bài viết',
         'resource' => [
-            'index' => 'Danh sách tin tức',
+            'index' => 'Danh sách bài viết',
             'create' => 'Tạo mới bài viết',
             'edit' => 'Cập nhật bài viết',
             'show' => 'Thông tin bài viết',
